@@ -42,7 +42,16 @@ menu_keyboard = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+from telegram import ReplyKeyboardRemove  # добавь вверху рядом с другими импортами
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # 1) сначала убираем старую клавиатуру
+    await update.message.reply_text(
+        "Обновляю меню…",
+        reply_markup=ReplyKeyboardRemove()
+    )
+
+    # 2) затем показываем новую
     await update.message.reply_text(
         "Здравствуйте.\n\n"
         "Я AI-юридический помощник по законодательству РК.\n\n"
